@@ -40,5 +40,11 @@ Answer: 2125
 * select sum(quantity) from orders;
 
 ### How much was spent on books?
-Answer: 68982
-* select sum(price) from orders inner join items on orders.item_id=items.id where category like 'books';
+Answer: 420566
+* select items.category, sum(orders.quantity*items.price) from orders inner join items on orders.item_id=items.id where items.category like '%books%'; 
+
+### Simulate buying an item by inserting a User for yourself and an Order for that User.
+Answer:
+* insert into users (id, first_name, last_name, email) values (51, 'Sally', 'Wieland', 'sallybwieland@gmail.com');
+* insert into orders (id, user_id, item_id, quantity, created_at) values (378, 51, 66, 2, datetime());
+
